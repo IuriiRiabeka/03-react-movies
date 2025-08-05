@@ -1,4 +1,4 @@
-import type { FormEvent } from 'react';
+
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
@@ -6,12 +6,9 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ onSubmit }: SearchBarProps) => {
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const input = form.elements.namedItem('query') as HTMLInputElement;
-    onSubmit(input.value);
-    form.reset();
+  const handleSubmit = (formData: FormData) => {
+    const query = formData.get("query") as string;
+    onSubmit(query);
   };
 
   return (
@@ -25,7 +22,7 @@ const SearchBar = ({ onSubmit }: SearchBarProps) => {
         >
           Powered by TMDB
         </a>
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form action={handleSubmit} className={styles.form}>
           <input
             className={styles.input}
             type="text"
