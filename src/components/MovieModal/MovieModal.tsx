@@ -8,7 +8,7 @@ interface MovieModalProps {
   onClose: () => void;
 }
 
-const modalRoot = document.getElementById('modal-root')!;
+
 
 const MovieModal = ({ movie, onClose }: MovieModalProps) => {
   useEffect(() => {
@@ -50,7 +50,7 @@ const MovieModal = ({ movie, onClose }: MovieModalProps) => {
         </div>
       </div>
     </div>,
-    modalRoot
+    document.body
   );
 };
 
